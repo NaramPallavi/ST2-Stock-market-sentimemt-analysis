@@ -7,71 +7,62 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
             margin: 0;
             padding: 0;
-            background: linear-gradient(120deg, #1e3c72, #2a5298);
-            color: white;
-            overflow: hidden;
-            text-align: center;
         }
-        .header {
-            padding: 20px;
-            font-size: 2rem;
-            font-weight: bold;
+        .container {
+            padding: 50px;
         }
-        .stock-ticker {
-            position: relative;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px 0;
+        header h1 {
+            font-size: 2.5em;
+            animation: fadeIn 2s ease-in;
         }
-        .ticker-text {
-            display: inline-block;
-            font-size: 1.2rem;
-            animation: tickerMove 10s linear infinite;
+        .intro, .info {
+            margin: 20px 0;
         }
-        @keyframes tickerMove {
-            from { transform: translateX(100%); }
-            to { transform: translateX(-100%); }
-        }
-        .content {
-            margin-top: 50px;
-            font-size: 1.2rem;
-        }
-        .predict-btn {
-            display: block;
-            margin: 40px auto;
-            padding: 15px 30px;
-            font-size: 1.5rem;
-            color: white;
-            background: #ffcc00;
+        #predict-btn {
+            background: #ff6f61;
             border: none;
-            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: white;
             cursor: pointer;
-            transition: 0.3s;
-            animation: pulse 1.5s infinite;
+            border-radius: 10px;
+            transition: transform 0.3s;
         }
-        .predict-btn:hover {
-            background: #ff9900;
+        #predict-btn:hover {
+            transform: scale(1.1);
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="header">Stock Market Sentiment Analysis</div>
-    <div class="stock-ticker">
-        <div class="ticker-text">📈 AAPL: +2.5% | TSLA: -1.3% | AMZN: +0.8% | BTC: +3.2% | ETH: +4.1% 📉</div>
+    <div class="container">
+        <header>
+            <h1>Stock Market Sentiment Analysis</h1>
+        </header>
+        <main>
+            <section class="intro">
+                <p>Analyze stock market trends with sentiment analysis inspired by airline analytics.</p>
+            </section>
+            <button id="predict-btn">Predict Sentiment</button>
+            <section class="info">
+                <h2>Understanding Sentiment Analysis</h2>
+                <p>Sentiment analysis in the stock market helps identify market trends by analyzing news, tweets, and financial reports.</p>
+                <p>Our system leverages AI to provide real-time insights into stock movements.</p>
+            </section>
+        </main>
     </div>
-    <div class="content">
-        <p>Analyze the latest stock market sentiments using AI-powered insights.</p>
-        <p>Discover whether the market sentiment is Bullish, Bearish, or Neutral.</p>
-        <button class="predict-btn">Predict Sentiment</button>
-    </div>
+    <script>
+        document.getElementById('predict-btn').addEventListener('click', function() {
+            window.location.href = '/predict';
+        });
+    </script>
 </body>
 </html>
