@@ -4,86 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Market Sentiment Analysis</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(45deg, #141e30, #243b55, #1a2a3a, #112233);
-            background-size: 400% 400%;
-            animation: backgroundChange 10s infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://in.pinterest.com/pin/1104507877373591785/') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
             color: white;
             text-align: center;
         }
-        @keyframes backgroundChange {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+
         .container {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.6);
             padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
-            margin: 50px;
         }
-        header {
-            font-size: 24px;
-            font-weight: bold;
+
+        h1 {
+            color: #00ffff;
+            font-size: 3.5em;
+        }
+
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.2);
             padding: 20px;
-        }
-        .hero {
-            padding: 50px;
-            animation: fadeIn 2s ease-in-out;
-        }
-        .airlines-info {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            margin: 20px;
-            animation: slideIn 2s ease-in-out;
+            width: 60%;
+            margin: 15px auto;
+            font-size: 1em;
         }
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #ff9800;
+
+        .predict-btn {
+            background-color: white;
+            color: black;
             border: none;
+            padding: 16px 32px;
+            font-size: 1.5em;
             cursor: pointer;
-            border-radius: 5px;
-            transition: transform 0.3s;
+            border-radius: 10px;
+            margin-top: 25px;
+            transition: transform 0.3s ease-in-out, background-color 0.3s;
         }
-        button:hover {
+
+        .predict-btn:hover {
             transform: scale(1.1);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            background-color: #e0e0e0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Stock Market Sentiment Analysis</h1>
-        </header>
-        <section class="hero">
-            <h2>Analyze the Market Mood</h2>
-            <p>Get real-time sentiment analysis on stock market trends.</p>
-            <button id="predict-btn">Predict Sentiment</button>
-        </section>
-        <section class="airlines-info">
-            <h2>Airlines & Market Trends</h2>
-            <p>Understand how the stock market impacts airline industries.</p>
-        </section>
+        <h1>Stock Market Sentiment Analysis</h1>
+        <div class="info-box">
+            The rise of social media platforms gave many people space to express their opinions. Everybody can discuss whatever topic they feel comfortable with, no matter whether they are experts in the field or not.
+        </div>
+        <button class="predict-btn">Predict Sentiment</button>
     </div>
+
     <script>
-        document.getElementById('predict-btn').addEventListener('click', function() {
-            alert('Sentiment Prediction feature coming soon!');
+        document.querySelector(".predict-btn").addEventListener("click", function() {
+            window.location.href = "/predict";
         });
     </script>
 </body>
