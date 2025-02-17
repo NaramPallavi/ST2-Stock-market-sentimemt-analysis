@@ -67,8 +67,8 @@
     <p>Here are some beautiful memories from our wedding.</p>
     
     <div class="photo-container">
-        {% for i in range(1, 6) %}  <!-- Adjusted range to include exactly 5 images -->
-            <img src="{{ url_for('static', filename='photo' + i|string + '.jpg') }}" alt="Wedding Photo {{ i }}">
+        {% for i in range(1, 6) %}  
+            <img src="{{ url_for('static', filename='photo' ~ i ~ '.jpg') }}" alt="Wedding Photo {{ i }}">
         {% endfor %}
     </div>
     
