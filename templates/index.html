@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
+    <title>Wedding Invitation ❤️</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
@@ -17,16 +17,20 @@
             margin: 0;
             padding: 0;
             animation: fadeIn 2s ease-in;
+            overflow: hidden; /* Prevent scrollbars for floating hearts */
         }
+
         .container {
             padding: 50px;
             animation: slideIn 2s ease-in-out;
         }
+
         header h1 {
             font-size: 3em;
             font-weight: bold;
             animation: textGlow 2s infinite alternate;
         }
+
         .details {
             font-size: 1.5em;
             margin: 20px 0;
@@ -35,13 +39,36 @@
             border-radius: 10px;
             display: inline-block;
             animation: pulse 2s infinite;
+            position: relative;
         }
+
         .highlight {
             color: #d50000;
             font-weight: bold;
             font-size: 2em;
             animation: colorChange 3s infinite alternate;
+            position: relative;
         }
+
+        /* Floating Heart Animation */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            color: #ff0000;
+            animation: floatUp 5s infinite linear;
+            opacity: 0;
+        }
+
         .photo-button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -53,49 +80,90 @@
             cursor: pointer;
             transition: 0.3s;
         }
+
         .photo-button:hover {
             background: #6a1b9a;
         }
+
+        /* Keyframe Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
         @keyframes slideIn {
             from { transform: translateY(-50px); }
             to { transform: translateY(0); }
         }
+
         @keyframes textGlow {
             from { text-shadow: 0 0 10px #ff4081; }
             to { text-shadow: 0 0 20px #e91e63; }
         }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+
         @keyframes colorChange {
             from { color: #d50000; }
             to { color: #6a1b9a; }
         }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts"></div>
+
     <div class="container">
         <header>
-            <h1>You're Invited to a Beautiful Wedding</h1>
+            <h1>You're Invited to a Beautiful Wedding ❤️</h1>
         </header>
         <main>
             <div class="details">
                 <p>We joyfully invite you to celebrate the wedding of</p>
-                <p class="highlight">Pavani & Yogith Kumar</p>
+                <p class="highlight">❤️ Pavani & Yogith Kumar ❤️</p>
                 <p>on</p>
-                <p class="highlight">June 05, 2025</p>
-                <p>Join us for a day full of love, laughter, and celebrations!</p>
+                <p class="highlight">💖 June 05, 2025 💖</p>
+                <p>Join us for a day full of love, laughter, and celebrations! 💞</p>
             </div>
-            
-            <button class="photo-button" onclick="window.location.href='{{ url_for('photos') }}'">View Photos</button>
 
+            <button class="photo-button" id="photoBtn">View Photos 📷</button>
         </main>
     </div>
+
+    <script>
+        // Floating Heart Animation
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+            document.querySelector(".floating-hearts").appendChild(heart);
+
+            const size = Math.random() * 30 + 10;
+            heart.style.fontSize = size + "px";
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 500);
+
+        // Photo Button Click Event
+        document.getElementById("photoBtn").addEventListener("click", function() {
+            window.location.href = "{{ url_for('photos') }}";
+        });
+    </script>
+
 </body>
 </html>
