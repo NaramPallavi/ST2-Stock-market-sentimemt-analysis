@@ -29,6 +29,7 @@ def submit():
 
     return render_template('result.html', name=name, attending=attending)
 
+
 # Serve favicon.ico to prevent 404 errors
 @app.route('/favicon.ico')
 def favicon():
