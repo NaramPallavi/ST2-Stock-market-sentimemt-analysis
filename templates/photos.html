@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Photos</title>
+</head>
+<body>
+    <h1>Wedding Photos</h1>
+    <p>Here are some beautiful memories from our wedding.</p>
+    
+    <img src="{{ url_for('static', filename='photo1.jpg') }}" alt="Wedding Photo 1" width="300">
+    <img src="{{ url_for('static', filename='photo2.jpg') }}" alt="Wedding Photo 2" width="300">
+    
+    <br><br>
+    <a href="{{ url_for('home') }}">Back to Invitation</a>
+</body>
+</html>
