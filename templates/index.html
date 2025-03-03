@@ -1,101 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-
+    <title>Stock Market Sentiment Analysis</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             text-align: center;
-            background: linear-gradient(to right, #ffafbd, #ffc3a0);
-            color: #6a1b9a;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
             margin: 0;
             padding: 0;
-            animation: fadeIn 2s ease-in;
         }
         .container {
             padding: 50px;
-            animation: slideIn 2s ease-in-out;
         }
         header h1 {
-            font-size: 3em;
-            font-weight: bold;
-            animation: textGlow 2s infinite alternate;
+            font-size: 2.5em;
+            animation: fadeIn 2s ease-in;
         }
-        .details {
-            font-size: 1.5em;
+        .intro, .info {
             margin: 20px 0;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            display: inline-block;
-            animation: pulse 2s infinite;
         }
-        .highlight {
-            color: #d50000;
-            font-weight: bold;
-            font-size: 2em;
-            animation: colorChange 3s infinite alternate;
-        }
-        .photo-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            color: white;
-            background: #d50000;
+        #predict-btn {
+            background: #ff6f61;
             border: none;
-            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: white;
             cursor: pointer;
-            transition: 0.3s;
+            border-radius: 10px;
+            transition: transform 0.3s;
         }
-        .photo-button:hover {
-            background: #6a1b9a;
+        #predict-btn:hover {
+            transform: scale(1.1);
         }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); }
-            to { transform: translateY(0); }
-        }
-        @keyframes textGlow {
-            from { text-shadow: 0 0 10px #ff4081; }
-            to { text-shadow: 0 0 20px #e91e63; }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        @keyframes colorChange {
-            from { color: #d50000; }
-            to { color: #6a1b9a; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>You're Invited to a Beautiful Wedding</h1>
+            <h1>Stock Market Sentiment Analysis</h1>
         </header>
         <main>
-            <div class="details">
-                <p>We joyfully invite you to celebrate the wedding of</p>
-                <p class="highlight">Pavani & Yogith Kumar</p>
-                <p>on</p>
-                <p class="highlight">June 05, 2025</p>
-                <p>Join us for a day full of love, laughter, and celebrations!</p>
-            </div>
-            
-            <button class="photo-button" onclick="window.location.href='/photos'">View Photos</button>
+            <section class="intro">
+                <p>Analyze stock market trends with sentiment analysis inspired by airline analytics.</p>
+            </section>
+            <button id="predict-btn">Predict Sentiment</button>
+            <section class="info">
+                <h2>Understanding Sentiment Analysis</h2>
+                <p>Sentiment analysis in the stock market helps identify market trends by analyzing news, tweets, and financial reports.</p>
+                <p>Our system leverages AI to provide real-time insights into stock movements.</p>
+            </section>
         </main>
     </div>
+    <script>
+        document.getElementById('predict-btn').addEventListener('click', function() {
+            window.location.href = '/predict';
+        });
+    </script>
 </body>
 </html>

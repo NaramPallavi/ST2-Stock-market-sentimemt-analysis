@@ -1,39 +1,46 @@
-from flask import Flask, request, render_template, send_from_directory
-import os
+from flask import Flask,render_template,request,jsonify
+from test import TextToNum
+import pickle
 
-app = Flask(__name__)
+app=Flask(__name__)
 
-# Home Page
-@app.route('/')
-def home():
-    return render_template('index.html')
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-# Photos Page
-@app.route('/photos')
-def photos():
-    return render_template('photos.html')
+@app.route("/predict",methods=['POST','GET'])
+def predict():
+    if request.method=="POST":
+        msg=request.form.get("message")
+        print(msg)
+        ob=TextToNum(msg)
+        ob.cleaner()
+        ob.token()
+        ob.removeStop()
+        st=ob.stemme()
+        stem_vector=" ".join(st)
 
-# RSVP Page
-@app.route('/rsvp')  
-def rsvp():
-    return render_template('rsvp.html')
+        with open("vectorizer.pickle","rb") as vc:
+            vectorizer=pickle.load(vc)
+        vcdata=vectorizer.transform([stem_vector]).toarray()
+        print(vcdata)
+        
+        with open("model.pickle","rb") as mc:
+            model=pickle.load(mc)
 
-# RSVP Form Submission with Validation
-@app.route('/submit', methods=['POST'])
-def submit():
-    name = request.form.get('name', '').strip()
-    attending = request.form.get('attending', '').strip()
+        pred=model.predict(vcdata)
+        print(pred)
+        sentiment_map = {1: "Positive 😊", 0: "Neutral 😐", -1: "Negative 😢"}
+        sentiment = sentiment_map.get(pred[0], "Unknown")
 
-    if not name or not attending:
-        return "Please fill in all fields.", 400  # Bad request status code
-
-    return render_template('result.html', name=name, attending=attending)
+        return render_template("result.html",sentiment=sentiment)
+       
 
 
-# Serve favicon.ico to prevent 404 errors
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    else:
+        return render_template("predict.html")
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0",port='5050')
